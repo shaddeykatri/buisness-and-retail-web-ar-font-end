@@ -1,10 +1,13 @@
-/**
- * Created by andrew.yang on 7/27/2017.
- */
+
 export class Product {
-    title: string;
-    brand?: string;
-    price?: number;
+    _id?: string;
+    name?: string;
     description?: string;
-    image?: string
+    ios_src?: number;
+    short_description?: string;
+    src?: string;
+    category?: string;
+    product_image_url?: string;
+    price?: number;
+    industry?: string
 }

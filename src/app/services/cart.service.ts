@@ -1,6 +1,4 @@
-/**
- * Created by andrew.yang on 7/28/2017.
- */
+
 import { Injectable } from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {Product} from "../model/product";
@@ -17,7 +15,7 @@ export class CartService {
     };
     addToCart = (cart:Cart) => {
         let current = this.cartListSubject.getValue();
-        let dup = current.find(c=>c.product.title === cart.product.title);
+        let dup = current.find(c=>c.product.name === cart.product.name);
         if(dup) dup.quantity += cart.quantity;
         else current.push(cart);
         this.cartListSubject.next(current);

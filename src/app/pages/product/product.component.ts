@@ -4,6 +4,7 @@ import {ProductService} from "../../services/products.service";
 import {Product} from "../../model/product";
 import {CartService} from "../../services/cart.service";
 
+
 @Component({
     selector: 'app-product',
     templateUrl: './product.component.html',
@@ -25,9 +26,14 @@ export class ProductComponent implements OnInit {
             })
     }
     getProduct = (id) => {
-        this.sub = this.productService.getProducts('./assets/mock-data/products.json')
-            .subscribe(res => {
-                this.product = res[id-1];
+        // this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/'+id)
+        //     .subscribe(res => {
+        //         this.product = res.Product;
+        //         // console.log(res)
+        //     })
+        this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/'+id).subscribe(
+            res=>{
+              this.product=res.Product;
             })
     };
     changeQuantity = (newQuantity:number) => {

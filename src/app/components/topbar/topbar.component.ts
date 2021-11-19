@@ -1,6 +1,4 @@
-/**
- * Created by andrew.yang on 7/28/2017.
- */
+
 import { Component, OnInit } from '@angular/core';
 import {CartService} from "../../services/cart.service";
 
@@ -21,16 +19,14 @@ import {CartService} from "../../services/cart.service";
             <div class="header-nav-wrapper">
                 <ul class="header-nav">
                     <li class="header-nav-item">
-                        <a routerLink="/">HOME</a>
+                        <a routerLink="/">FURNITURE<span class="fa fa-caret-down"></span></a>
                     </li>
                     <li class="header-nav-item">
-                        <a routerLink="/">SHOP<span class="fa fa-caret-down"></span></a>
+                        <a routerLink="/">FASHION<span class="fa fa-caret-down" onclick>
+                        </span></a>
                     </li>
                     <li class="header-nav-item">
-                        <a routerLink="/">JOURNAL</a>
-                    </li>
-                    <li class="header-nav-item">
-                        <a routerLink="/">MORE<span class="fa fa-caret-down"></span></a>
+                        <a routerLink="/">MACHINERY<span class="fa fa-caret-down"></span></a>
                     </li>
                 </ul>
             </div>

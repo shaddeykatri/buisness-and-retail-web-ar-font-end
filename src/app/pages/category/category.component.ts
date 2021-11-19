@@ -4,6 +4,7 @@ import {Product} from "../../model/product";
 import {CartService} from "../../services/cart.service";
 import {Router} from "@angular/router";
 
+
 @Component({
     selector: 'app-category',
     templateUrl: './category.component.html',
@@ -22,10 +23,15 @@ export class CategoryComponent implements OnInit {
         this.load();
     }
     load = () => {
-       this.sub = this.productService.getProducts('./assets/mock-data/products.json')
-            .subscribe(res => {
-                this.products = res;
-            })
+    //    this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/getAll')
+    //         .subscribe(res => {
+    //             this.products = res.Products;     
+    //             console.log(this.products)    
+    //         })
+    this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/getAll').subscribe(
+        res=>{
+          this.products=res.Products;
+        })
     };
     addToCart = (product) => {
         this.cartService.addToCart({product,quantity:1})

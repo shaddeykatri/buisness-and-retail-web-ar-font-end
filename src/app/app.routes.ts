@@ -1,6 +1,4 @@
-/**
- * Created by andrew.yang on 7/27/2017.
- */
+
 export const appRoutes=[
     {
         path:'',

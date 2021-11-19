@@ -43,11 +43,11 @@ describe('Product Page, test add to cart button', () => {
     f.detectChanges();
     products = [
       {
-        "title": "1",
+        "_id": "1",
         "price": 40
       },
       {
-        "title": "2",
+        "_id": "2",
         "price": 28
       }
     ];
