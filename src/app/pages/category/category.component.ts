@@ -28,17 +28,16 @@ export class CategoryComponent implements OnInit {
         this.getIndustry()
         this.getCategory()
 
-    console.log(this.industry)
-    console.log(this.category)
+
     this.load()
     }
-    public reloadCurrentRoute() {
-        let currentUrl = this.router.url;
-        console.log(this.router.url)
-        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-            this.router.navigate([currentUrl]);
-        });
-    }
+    // public reloadCurrentRoute() {
+    //     let currentUrl = this.router.url;
+    //     console.log(this.router.url)
+    //     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    //         this.router.navigate([currentUrl]);
+    //     });
+    // }
     load = () => {
     //    this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/getAll')
     //         .subscribe(res => {
@@ -47,19 +46,18 @@ export class CategoryComponent implements OnInit {
     //         })
     if(this.category == "all")
 {   
-    console.log("inside if")
+
     this.sub = this.productService.getProducts('http://localhost:5000/api/v1/'+this.industry+'/getAll').subscribe(
         res=>{
           this.products=res.Products;
         })}
         else{
-            console.log("inside else")
+
             var query = 'http://localhost:5000/api/v1/'+this.industry+'/'+this.category+'/getAll'
-            console.log(query)
+
             this.sub = this.productService.getProducts(query).subscribe(
         res=>{
           this.products=res.Product;
-          console.log(this.products)
         })
         }
     };
@@ -87,7 +85,6 @@ export class CategoryComponent implements OnInit {
         if(this.route.params!==null){
             this.route.params.subscribe(res => {
             if(res.category != null){
-                console.log("setting category")
                 this.category = res.category
             }
             else{

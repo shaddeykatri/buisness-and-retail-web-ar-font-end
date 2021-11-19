@@ -32,6 +32,15 @@
     background-size: cover;
 }
 
+.product-qr-code {
+    width: 60%;
+    padding-top:0%;
+    background-position: 0% 0%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    align-self: center;
+}
+
 @media screen and (max-width: 992px) {
     .product-details-image {
         width: 100%;

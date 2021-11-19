@@ -19,20 +19,17 @@ import { CategoryComponent } from '../../pages/category/category.component';
                 <img class="header-logo-image" src="./assets/imgs/logo.png" alt="Hero">
             </div>
             <div class="header-nav-wrapper">
-                <ul class="header-nav ">
-                    <li class="header-nav-item ">
-                        <a href="/web-ar/Furniture">FURNITURE<span class="fa fa-caret-down"></span></a>
+            <ul class="header-nav ">
+                    <li class="header-nav-item dropdown">
+                        <a href="/web-ar/Furniture">FURNITURE</a>
                     </li>
                     <li class="header-nav-item ">
-                        <a href="/web-ar/Fashion">FASHION<span class="fa fa-caret-down" onclick>
-                        </span></a>
+                        <a href="/web-ar/Fashion">FASHION</a>
                     </li>
                     <li class="header-nav-item ">
-                        <a href="/web-ar/Machinery">MACHINERY<span class="fa fa-caret-down" onclick>
-                        </span></a>
+                        <div routerLink="/web-ar/Machinery">MACHINERY</div>
                     </li>
                 </ul>
-                
             </div>
             <div class="header-cart-wrapper">
                 <div class="header-cart" (click)="toggleCartPopup($event)">
@@ -87,4 +84,5 @@ export class TopbarComponent implements OnInit {
     //     });
     // }
     // <a [routerLink]="['/web-ar', 'Machinery']" (click)="navigate($event)">MACHINERY<span class="fa fa-caret-down"></span></a>
+    
 }
