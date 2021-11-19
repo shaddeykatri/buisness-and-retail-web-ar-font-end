@@ -21,10 +21,16 @@ import {Observable} from "rxjs";
 
 export class ProductService {
 
+  getQrCodeEndpoint : string ='http://localhost:5000/api/v1/makeQrCode';
+
   constructor(private http: HttpClient) {}
 
   public getProducts(endpoint: string) : Observable<any>{
     return this.http.get<any>(endpoint); 
    }
+
+  public getQrCode(body: any) : Observable<any> {
+    return this.http.post<any>(this.getQrCodeEndpoint, body);
+  }
 
 }
