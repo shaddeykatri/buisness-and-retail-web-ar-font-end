@@ -13,6 +13,7 @@ import {CartService} from "../../services/cart.service";
 export class ProductComponent implements OnInit {
     private sub;
     public product:Product;
+    id:string;
     quantity: number = 1;
     constructor(private route: ActivatedRoute,
                 private productService:ProductService,
@@ -20,18 +21,20 @@ export class ProductComponent implements OnInit {
     ) { }
 
     ngOnInit() {
+        
+
         this.route.params
             .subscribe(res => {
-                this.getProduct(res.id);
+                this.getProduct(res.industry, res.id);
             })
     }
-    getProduct = (id) => {
+    getProduct = (industry, id) => {
         // this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/'+id)
         //     .subscribe(res => {
         //         this.product = res.Product;
         //         // console.log(res)
         //     })
-        this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/'+id).subscribe(
+        this.sub = this.productService.getProducts('http://localhost:5000/api/v1/'+industry+'/'+id).subscribe(
             res=>{
               this.product=res.Product;
             })
@@ -45,4 +48,5 @@ export class ProductComponent implements OnInit {
     ngOnDestroy() {
         this.sub.unsubscribe();
     }
+
 }

@@ -1,8 +1,8 @@
 <div *ngIf="product" class="product-page">
     <div class="product-page-container">
         <ol class="product-breadcrumbs">
-            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-            <li class="breadcrumb-item"> / <a routerLink="/">{{product.category}}</a></li>
+            <li class="breadcrumb-item"><a [routerLink]="['/web-ar',product.industry]">Home</a></li>
+            <li class="breadcrumb-item"> / <a [routerLink]="['/web-ar',product.industry,product.category]">{{product.category}}</a></li>
             <li class="breadcrumb-item"> / {{product.name}}</li>
         </ol>
         <div class="row">

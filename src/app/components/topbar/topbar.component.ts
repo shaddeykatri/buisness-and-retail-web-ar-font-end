@@ -1,6 +1,8 @@
 
 import { Component, OnInit } from '@angular/core';
 import {CartService} from "../../services/cart.service";
+import {Router} from "@angular/router";
+import { CategoryComponent } from '../../pages/category/category.component';
 
 @Component({
     selector: 'top-bar',
@@ -17,18 +19,20 @@ import {CartService} from "../../services/cart.service";
                 <img class="header-logo-image" src="./assets/imgs/logo.png" alt="Hero">
             </div>
             <div class="header-nav-wrapper">
-                <ul class="header-nav">
-                    <li class="header-nav-item">
-                        <a routerLink="/">FURNITURE<span class="fa fa-caret-down"></span></a>
+                <ul class="header-nav ">
+                    <li class="header-nav-item ">
+                        <a href="/web-ar/Furniture">FURNITURE<span class="fa fa-caret-down"></span></a>
                     </li>
-                    <li class="header-nav-item">
-                        <a routerLink="/">FASHION<span class="fa fa-caret-down" onclick>
+                    <li class="header-nav-item ">
+                        <a href="/web-ar/Fashion">FASHION<span class="fa fa-caret-down" onclick>
                         </span></a>
                     </li>
-                    <li class="header-nav-item">
-                        <a routerLink="/">MACHINERY<span class="fa fa-caret-down"></span></a>
+                    <li class="header-nav-item ">
+                        <a href="/web-ar/Machinery">MACHINERY<span class="fa fa-caret-down" onclick>
+                        </span></a>
                     </li>
                 </ul>
+                
             </div>
             <div class="header-cart-wrapper">
                 <div class="header-cart" (click)="toggleCartPopup($event)">
@@ -43,16 +47,13 @@ import {CartService} from "../../services/cart.service";
         </div>
         <ul class="mobile-header-nav" *ngIf="collapse" (click)="collapse = !collapse">
             <li>
-                <a routerLink="/">HOME</a>
+                <a routerLink="/web-ar/Furniture">FURNITURE</a>
             </li>
             <li>
-                <a routerLink="/">SHOP</a>
+                <a routerLink="/web-ar/Fashion">FASHION</a>
             </li>
             <li>
-                <a routerLink="/">JOURNAL</a>
-            </li>
-            <li>
-                <a routerLink="/">MORE</a>
+                <a routerLink="/web-ar/Machinery">MACHINERY</a>
             </li>
         </ul>
         <cart-popup></cart-popup>
@@ -63,7 +64,8 @@ export class TopbarComponent implements OnInit {
     public collapse: boolean = false;
     public cart_num:number;
     constructor(
-        private cartService: CartService
+        private cartService: CartService,
+        private router: Router
     ) { }
 
     ngOnInit() {
@@ -77,4 +79,12 @@ export class TopbarComponent implements OnInit {
         event.stopPropagation();
         this.cartService.toggleCart()
     }
+    // navigate = (event) => {
+    //     let currentUrl = this.router.url;
+    //     console.log(this.router.url)
+    //     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+    //         this.router.navigate([currentUrl]);
+    //     });
+    // }
+    // <a [routerLink]="['/web-ar', 'Machinery']" (click)="navigate($event)">MACHINERY<span class="fa fa-caret-down"></span></a>
 }

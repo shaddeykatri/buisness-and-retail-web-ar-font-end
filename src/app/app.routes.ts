@@ -2,19 +2,23 @@
 export const appRoutes=[
     {
         path:'',
-        redirectTo:'category',
+        redirectTo:'web-ar/Furniture',
         pathMatch:'full'
     },
     {
-        path:'category',
+        path:'web-ar/:industry',
         loadChildren:'./pages/category/category.module#CategoryModule'
     },
     {
-        path:'product',
+        path:'web-ar/:industry/:category',
+        loadChildren:'./pages/category/category.module#CategoryModule'
+    },
+    {
+        path:'web-ar/:industry/:category',
         loadChildren:'./pages/product/product.module#ProductModule'
     },
     {
-        path:'cart',
+        path:'web-ar/cart',
         loadChildren:'./pages/cart/cart-page.module#CartPageModule'
     },
     {

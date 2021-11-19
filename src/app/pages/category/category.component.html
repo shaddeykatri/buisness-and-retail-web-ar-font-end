@@ -15,7 +15,7 @@
             <div class="image-container">
                 <div class="product-image" [ngStyle]="{'background-image': 'url(\''+ product.product_image_url + '\')'}"></div>
                 <div class="overlay">
-                    <div class="button button-primary" [routerLink]="['../product',product._id]">View Details</div>
+                    <div class="button button-primary" [routerLink]="['/web-ar',product.industry,product.category,product._id]">View Details</div>
                     <div class="button button-primary" (click)="addToCart(product)">Add To Cart</div>
                 </div>
             </div>

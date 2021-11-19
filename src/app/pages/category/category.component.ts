@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from "../../services/products.service";
 import {Product} from "../../model/product";
+import {ActivatedRoute} from "@angular/router";
 import {CartService} from "../../services/cart.service";
 import {Router} from "@angular/router";
 
@@ -12,15 +13,31 @@ import {Router} from "@angular/router";
 })
 export class CategoryComponent implements OnInit {
     public products:Array<Product>;
+    industry:string;
+    category:string;
     private sub;
     constructor(
+        private route: ActivatedRoute,
          private productService:ProductService,
          private cartService:CartService,
          private router: Router
     ) { }
 
     ngOnInit() {
-        this.load();
+      
+        this.getIndustry()
+        this.getCategory()
+
+    console.log(this.industry)
+    console.log(this.category)
+    this.load()
+    }
+    public reloadCurrentRoute() {
+        let currentUrl = this.router.url;
+        console.log(this.router.url)
+        this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+            this.router.navigate([currentUrl]);
+        });
     }
     load = () => {
     //    this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/getAll')
@@ -28,10 +45,23 @@ export class CategoryComponent implements OnInit {
     //             this.products = res.Products;     
     //             console.log(this.products)    
     //         })
-    this.sub = this.productService.getProducts('http://localhost:5000/api/v1/Furniture/getAll').subscribe(
+    if(this.category == "all")
+{   
+    console.log("inside if")
+    this.sub = this.productService.getProducts('http://localhost:5000/api/v1/'+this.industry+'/getAll').subscribe(
         res=>{
           this.products=res.Products;
+        })}
+        else{
+            console.log("inside else")
+            var query = 'http://localhost:5000/api/v1/'+this.industry+'/'+this.category+'/getAll'
+            console.log(query)
+            this.sub = this.productService.getProducts(query).subscribe(
+        res=>{
+          this.products=res.Product;
+          console.log(this.products)
         })
+        }
     };
     addToCart = (product) => {
         this.cartService.addToCart({product,quantity:1})
@@ -39,4 +69,32 @@ export class CategoryComponent implements OnInit {
     ngOnDestroy() {
         this.sub.unsubscribe();
     }
+    getIndustry(){
+        if(this.route.params!==null){
+            // console.log("inside if")
+            this.route.params.subscribe(res => {
+            if(res.industry != null){
+                this.industry = res.industry
+            }
+            else{
+                this.industry = "Furniture" 
+            }
+            
+        })
+    }
+}
+    getCategory(){
+        if(this.route.params!==null){
+            this.route.params.subscribe(res => {
+            if(res.category != null){
+                console.log("setting category")
+                this.category = res.category
+            }
+            else{
+                this.category = "all" 
+            }
+            
+        })
+    }
+}
 }
